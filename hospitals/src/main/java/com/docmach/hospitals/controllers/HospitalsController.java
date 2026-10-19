@@ -1,0 +1,35 @@
+package com.docmach.hospitals.controllers;
+
+import com.docmach.hospitals.domain.Hospitals;
+import com.docmach.hospitals.dto.HospitalsRequestDto;
+import com.docmach.hospitals.dto.HospitalsResponseDto;
+import com.docmach.hospitals.mapper.HospitalsMapper;
+import com.docmach.hospitals.repository.HospitalsRepository;
+import com.docmach.hospitals.service.HospitalsService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/hospitals")
+public class HospitalsController {
+
+    private final HospitalsService service;
+
+    private final HospitalsMapper mapper;
+
+    public HospitalsController(HospitalsService service, HospitalsMapper mapper) {
+        this.service = service;
+        this.mapper = mapper;
+    }
+
+    @PostMapping("/create")
+    public ResponseEntity<HospitalsResponseDto> create(@RequestBody HospitalsRequestDto requestDto) {
+        Hospitals hospitalEntity = mapper.toEntity(requestDto);
+        Hospitals savedHospital = service.create(hospitalEntity);
+        return ResponseEntity.status(HttpStatus.CREATED).body(mapper.toResponseDto(savedHospital));
+    }
+}

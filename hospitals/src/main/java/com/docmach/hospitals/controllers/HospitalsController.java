@@ -4,7 +4,6 @@ import com.docmach.hospitals.domain.Hospitals;
 import com.docmach.hospitals.dto.HospitalsRequestDto;
 import com.docmach.hospitals.dto.HospitalsResponseDto;
 import com.docmach.hospitals.mapper.HospitalsMapper;
-import com.docmach.hospitals.repository.HospitalsRepository;
 import com.docmach.hospitals.service.HospitalsService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

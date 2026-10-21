@@ -22,10 +22,4 @@ public class Usuario {
     private String idade;
     private String email;
 
-    public Usuario(DadosCadastroUsuario dados){
-        this.nome = dados.nome();
-        this.idade = dados.idade();
-        this.email = dados.email();
-    }
-
 }

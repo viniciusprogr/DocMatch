@@ -11,6 +11,6 @@ public record DadosCadastroUsuario(
         String idade,
 
         @NotBlank
-        String email;
+        String email
 ) {
 }

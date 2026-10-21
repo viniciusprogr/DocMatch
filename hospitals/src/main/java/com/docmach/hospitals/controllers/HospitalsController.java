@@ -7,10 +7,7 @@ import com.docmach.hospitals.mapper.HospitalsMapper;
 import com.docmach.hospitals.service.HospitalsService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/hospitals")
@@ -30,5 +27,11 @@ public class HospitalsController {
         Hospitals hospitalEntity = mapper.toEntity(requestDto);
         Hospitals savedHospital = service.create(hospitalEntity);
         return ResponseEntity.status(HttpStatus.CREATED).body(mapper.toResponseDto(savedHospital));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<HospitalsResponseDto> getHospitals(@PathVariable Long id) {
+        Hospitals hospitalEntity = service.getHospitalsById(id);
+        return ResponseEntity.ok(mapper.toResponseDto(hospitalEntity));
     }
 }

@@ -4,7 +4,9 @@ import com.docmatch.userservice.dto.DadosCadastroUsuario;
 import com.docmatch.userservice.model.Usuario;
 import com.docmatch.userservice.repository.UsuarioRepository;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;

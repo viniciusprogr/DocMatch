@@ -1,16 +1,22 @@
 package com.docmatch.userservice.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
 
 public record DadosCadastroUsuario(
 
         @NotBlank
         String nome,
 
-        @NotBlank
-        String idade,
+        @NotNull
+        @Past
+        Integer datanascimento,
 
         @NotBlank
-        String email
+        String email,
+
+        @NotBlank
+        String senha
 ) {
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.Map;
 
@@ -24,10 +25,12 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity<?> cadastrarUsuario(@RequestBody @Valid DadosCadastroUsuario dados) {
+    public ResponseEntity<DadosDetalhamentoUsuario> cadastrarUsuario(@RequestBody @Valid DadosCadastroUsuario dados, UriComponentsBuilder uribuilder) {
 
-        usuarioService.cadastrarUsuario(dados);
+        var usuario = usuarioService.cadastrarUsuario(dados);
 
-        return ResponseEntity.status(201).body(Map.of("Mensagem", "Usuario cadastrado com sucesso"));
+        var uri = uribuilder.path("/usuarios/{id}").buildAndExpand(usuario.getId()).toUri();
+
+        return ResponseEntity.created(uri).body(new DadosDetalhamentoUsuario(usuario));
     }
 }

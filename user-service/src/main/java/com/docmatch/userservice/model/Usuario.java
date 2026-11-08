@@ -1,15 +1,14 @@
 package com.docmatch.userservice.model;
-
-import com.docmatch.userservice.dto.DadosCadastroUsuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import java.time.LocalDate;
 
 
 @Entity
-@Table
+@Table(name = "usuarios")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -17,9 +16,16 @@ import lombok.Setter;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
+
     private String nome;
-    private String idade;
+
+    @Column(name = "data_nascimento")
+    private LocalDate datanascimento;
+
     private String email;
 
+    private String senha;
+
+    private Boolean ativo;
 }

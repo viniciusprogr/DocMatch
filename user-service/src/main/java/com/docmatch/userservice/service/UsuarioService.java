@@ -20,6 +20,9 @@ public class UsuarioService {
     public Usuario cadastrarUsuario(DadosCadastroUsuario dados) {
 
         Usuario user = modelMapper.map(dados, Usuario.class);
+
+        user.setAtivo(true);
+
         return usuarioRepository.save(user);
 
     }

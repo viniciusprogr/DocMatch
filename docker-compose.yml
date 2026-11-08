@@ -2,7 +2,7 @@ services:
   postgres-db:
     image: postgres:17-alpine
     container_name: user-db
-    restart: always
+    restart: no
     environment:
       POSTGRES_DB: ${DB_NAME}
       POSTGRES_USER: ${DB_USERNAME}
